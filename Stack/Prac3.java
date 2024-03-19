@@ -12,19 +12,33 @@ package Stack;// Practice3
 import java.util.Stack;
 
 public class Prac3 {
-//    public static double calculate(String string) {
-//
-//    }
+    public static double calculate(String string) {
+        Stack<Double> stack = new Stack();
+        for(String s: string.split(" ")){
+            if(s.equals("+")){
+                stack.push(stack.pop()+stack.pop());
+            }else if(s.equals("-")){
+                stack.push(-stack.pop() + stack.pop()); //뒤에부터나오니까 앞에 - 붙여주어야함
+            }else if(s.equals("*")){
+                stack.push(stack.pop() * stack.pop());
+            }else if(s.equals("/")){
+                stack.push(1/stack.pop() * stack.pop()); //- 와 마찬가지
+            }else {
+                stack.push(Double.parseDouble(s));
+            }
+        }
+        return stack.pop();
+    }
 
     public static void main(String[] args) {
         // Test code
-//        System.out.println(calculate("2 2 +"));    // 4
-//        System.out.println(calculate("2 2 -"));    // 0
-//        System.out.println(calculate("2 2 *"));    // 4
-//        System.out.println(calculate("2 2 /"));    // 1
-//
-//        System.out.println(calculate("1 1 + 2 * 3 * 2 / 5 -"));    // 1
-//        System.out.println(calculate("5 2 * 3 - 8 * 4 /"));        // 14
+        System.out.println(calculate("2 2 +"));    // 4
+        System.out.println(calculate("2 2 -"));    // 0
+        System.out.println(calculate("2 2 *"));    // 4
+        System.out.println(calculate("2 2 /"));    // 1
+
+        System.out.println(calculate("1 1 + 2 * 3 * 2 / 5 -"));    // 1
+        System.out.println(calculate("5 2 * 3 - 8 * 4 /"));        // 14
 
     }
 }

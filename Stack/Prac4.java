@@ -17,21 +17,37 @@ import java.util.Stack;
 
 public class Prac4 {
 
-//    public static boolean stringCompare(String s1, String s2) {
-//    }
+    public static boolean stringCompare(String s1, String s2) {
+        String str1 = makeString(s1);
+        String str2 = makeString(s2);
+
+        return str1.equals(str2);
+    }
+
+    public static String makeString(String str){
+        Stack stack = new Stack();
+        for(char c: str.toCharArray()){
+            if(c == '#' && !stack.isEmpty()){
+                stack.pop();
+            }else{
+                stack.push(c);
+            }
+        }
+        return stack.toString();
+    }
 
     public static void main(String[] args) {
         // Test code
-//        String s1 = "tree";
-//        String s2 = "th#ree";
-//        System.out.println(stringCompare(s1, s2));
-//
-//        s1 = "ab#a";
-//        s2 = "aab#";
-//        System.out.println(stringCompare(s1, s2));
-//
-//        s1 = "wo#w";
-//        s2 = "ww#o";
-//        System.out.println(stringCompare(s1, s2));
+        String s1 = "tree";
+        String s2 = "th#ree";
+        System.out.println(stringCompare(s1, s2));
+
+        s1 = "ab#a";
+        s2 = "aab#";
+        System.out.println(stringCompare(s1, s2));
+
+        s1 = "wo#w";
+        s2 = "ww#o";
+        System.out.println(stringCompare(s1, s2));
     }
 }

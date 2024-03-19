@@ -15,6 +15,25 @@ import java.util.Stack;
 
 public class Prac2 {
     public static void checkParenthesis(String str) {
+        Stack stack1 = new Stack();
+        boolean isPass = true;
+
+        for(String s: str.split("")){
+            if(s.equals("(")){
+                stack1.push(s);
+            }else {
+                if(stack1.isEmpty()){
+                    isPass = false;
+                    break;
+                }
+                stack1.pop();
+            }
+        }
+        if(isPass == true && stack1.isEmpty()){
+            System.out.println("PASS!");
+        }else{
+            System.out.println("FAIL!");
+        }
 
     }
 
