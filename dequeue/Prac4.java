@@ -21,13 +21,21 @@ class MyDeque4 {
     }
 
     public void increaseSize() {
-
+        int[] clone = this.arr.clone(); // 배열을 복제
+        this.arr = new int[clone.length * 2]; // 배열 길이 2배로
+        int start = (this.front + 1 ) % clone.length;
+        int end = (this.rear + 1) % clone.length;
+        int Cnt = 1;
+        for (int i = start; i != end; i = (i + 1) % clone.length) {
+            this.arr[Cnt++] = clone[i];
+        }
+        this.rear = Cnt -1;
+        this.front = 0;
     }
 
     public void addFirst(int data) {
         if (this.isFull()) {
-            System.out.println("Deque is full!");
-            return;
+            this.increaseSize();
         }
 
         this.arr[front] = data;
@@ -36,8 +44,7 @@ class MyDeque4 {
 
     public void addLast(int data) {
         if (this.isFull()) {
-            System.out.println("Deque is full!");
-            return;
+            this.increaseSize();
         }
 
         this.rear = (this.rear + 1) % this.arr.length;

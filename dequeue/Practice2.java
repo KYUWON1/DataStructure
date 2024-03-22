@@ -3,38 +3,37 @@ package dequeue;// Practice2
 
 class MyDeque2 {
     int[] arr;
-    int front = 0;
-    int rear = 0;
+    int front = 0; // rear는 데이터를 넣을 부분
+    int rear = 0; // front는 빈공간 표시할 부분
 
     MyDeque2(int size) {
-        this.arr = new int[size + 1];
+        this.arr = new int[size+1]; // front는 빈공간 표시할 부분
     }
 
     public boolean isEmpty() {
-        return this.rear == this.front;
+        return (this.front == this.rear);
     }
 
     public boolean isFull() {
-        return (this.rear+1) % this.arr.length == this.front;
+        return ( this.rear + 1) % this.arr.length == this.front;
     }
 
     public void addFirst(int data) {
         if(this.isFull()){
-            System.out.println("꽉 찼습니다");
+            System.out.println("꽉 찼습니다.");
             return;
         }
-
-        this.arr[this.front] = data;
-        this.front = (this.front-1+this.arr.length) % this.arr.length;
+        this.arr[front] = data;
+        this.front = (this.front - 1 + this.arr.length ) % this.arr.length;
     }
 
     public void addLast(int data) {
         if(this.isFull()){
-            System.out.println("꽉 찼습니다");
+            System.out.println("꽉 찼습니다.");
             return;
         }
-        this.rear = (this.rear + 1) % this.arr.length;
-        this.arr[this.rear] = data;
+        this.rear = (this.rear + 1 ) % this.arr.length;
+        this.arr[this. rear] = data;
     }
 
     public Integer removeFirst() {
@@ -51,16 +50,14 @@ class MyDeque2 {
             System.out.println("비었습니다");
             return null;
         }
-
         int data = this.arr[this.rear];
-        this.rear = (this.rear -1 + this.arr.length) % this.arr.length;
+        this.rear = (this.rear - 1 + this.arr.length) % this.arr.length;
         return data;
     }
 
     public void printDeque() {
-        int start = (this.front + 1) % this.arr.length;
+        int start = (this.front +1 ) % this.arr.length;
         int end = (this.rear + 1) % this.arr.length;
-
         for (int i = start; i != end; i = (i + 1) % this.arr.length) {
             System.out.print(this.arr[i]+" ");
         }
