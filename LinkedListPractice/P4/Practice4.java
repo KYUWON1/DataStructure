@@ -107,11 +107,15 @@ public class Practice4 {
     public static void dataCollect(String[] data) {
         HashSet<Character> set = new HashSet<>();
         for(String s:data){
-            set.add(s.toCharArray()[0]);
+            set.add(s.charAt(0));
         }
         System.out.println(set);
 
+        //그냥 타입만 지정해준다, 크기는 toArray에서 알아서 생성해줌
         Character[] arr = set.toArray(new Character[0]);
+        for(Character c: arr){
+            System.out.print(c);
+        }
         LinkedList[] linkedList = new LinkedList[set.size()];
         for (int i = 0; i < linkedList.length; i++) {
             linkedList[i] = new LinkedList(null,arr[i]);
